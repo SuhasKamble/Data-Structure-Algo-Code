@@ -54,6 +54,27 @@ int pop(struct stack *ptr)
     }
 }
 
+int peek(struct stack *sp, int i)
+{
+    int arrInd = sp->top - i + 1;
+    if (arrInd < 0)
+    {
+        printf("Invalid Position");
+        return -1;
+    }
+    return sp->arr[arrInd];
+}
+
+int stackTop(struct stack *sp)
+{
+    return sp->arr[sp->top];
+}
+
+int stackBottom(struct stack *sp)
+{
+    return sp->arr[0];
+}
+
 void display(struct stack *ptr)
 {
     if (ptr->top == -1)
@@ -82,11 +103,16 @@ int main()
     push(sp, 30);
     push(sp, 40);
 
-    printf("The value %d is removed\n ", pop(sp));
-    printf("The value %d is removed\n ", pop(sp));
-    printf("The value %d is removed\n ", pop(sp));
-    printf("The value %d is removed\n ", pop(sp));
+    // for (int i = 1; i < sp->top + 2; i++)
+    // {
+    //     printf("The value at position is %d is %d\n", i, peek(sp, i));
+    // }
 
-    display(sp);
+    printf("Thr top element in the stack is %d\n", stackTop(sp));
+    printf("Thr bottom element in the stack is %d\n", stackBottom(sp));
+    // display(sp);
     return 0;
 }
+
+// Note:
+// All Operation of the stack requires constant time i.e O(1);
